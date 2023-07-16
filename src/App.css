@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+.movie{
+
+  display: inline-block;
+  transition: transform .2s;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0.19rem;
+  cursor:pointer;
+  max-width:300px;
+  height:300px;
+  z-index:0;
+  border: 1px solid rgb(99, 99, 99);
+}
+.movie img{
+  
+  max-width:100%;
+  max-height:100%
+    
+}
