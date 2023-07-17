@@ -1,6 +1,8 @@
 import React ,{ useEffect, useState } from "react"
+import {useParams } from 'react-router-dom';
 const Recommend = () =>{
-    const [ recs, setRecs ] = useState([])
+    const [ recs, setRecs ] = useState([]);
+    let params = useParams();
     useEffect(() => {
         const options = {
             method: 'GET',
@@ -10,7 +12,7 @@ const Recommend = () =>{
             }
           };
           
-          fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&with_genres=28%7C12', options)
+          fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&with_genres=${params.genre}`, options)
           .then(response => response.json())
           .then(response => {
             console.log(response);

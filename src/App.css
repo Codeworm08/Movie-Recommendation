@@ -56,3 +56,20 @@
   max-height:100%
     
 }
+
+.Nav{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #131212;
+}
+.Nav a{
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 8px 0 8px;
+  padding: 8px;
+  color: #dddddd;
+}
+.Nav a:hover{
+  cursor:pointer;
+  background-color:#1b63f3
+}
