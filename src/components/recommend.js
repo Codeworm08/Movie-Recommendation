@@ -1,7 +1,8 @@
 import React ,{ useEffect, useState } from "react"
-import {useParams } from 'react-router-dom';
+import {useParams,Link, } from 'react-router-dom';
 const Recommend = () =>{
     const [ recs, setRecs ] = useState([]);
+    
     let params = useParams();
     useEffect(() => {
         const options = {
@@ -23,10 +24,12 @@ const Recommend = () =>{
     return (
         <>
             {recs.map((movie) => (
+                <Link to={`/movie/${movie.id}`} style={{textDecoration:"none", color:"black"}}>
                 <div className="movie">
                     <h3>{movie.title}</h3>
                     <img src={`https://image.tmdb.org/t/p/original${movie?movie.poster_path:""}`} alt="movie thumbnail"/>
                 </div>
+                </Link>
             ))}
         </>
     )
