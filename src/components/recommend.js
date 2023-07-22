@@ -21,6 +21,7 @@ const Recommend = () =>{
           })
           .catch(err => console.error(err));
     },[])
+    
     return (
         <>
             {recs.map((movie) => (
@@ -30,7 +31,7 @@ const Recommend = () =>{
                     <img src={`https://image.tmdb.org/t/p/original${movie?movie.poster_path:""}`} alt="movie thumbnail"/>
                 </div>
                 </Link>
-            ))}
+            ))}                        
         </>
     )
 }
