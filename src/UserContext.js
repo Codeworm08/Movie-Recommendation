@@ -21,7 +21,7 @@ export const UserProvider = ({children}) => {
         {
             alert("Username already exists!.");
             console.log(users);
-            return;
+            return false;
         }
         setUsers((prevUsers)=>({
             ...prevUsers,
@@ -32,35 +32,25 @@ export const UserProvider = ({children}) => {
         }));
         console.log(users);
         alert("Registration Successful!");
+        return true;
     };
-    const loginUser = (username, password) => {
-        if(users[username] && users[username].password === password) {
+    const loginUser = (username) => {
             setIsLoggedIn(true);
             setUser(username);
-            alert('Login successful');
             return true;
-        }
-        else
-        {
-            setIsLoggedIn(false);
-            setUser(null);
-            console.log(users);
-            alert('Invalid Username or password');
-            return false;
-        }
     };
     const logoutUser = ()=> {
         setIsLoggedIn(false);
         setUser(null);
         alert('Signed Out');
     }
-    const setFavorites = (username, movieId) => {
+    const setFavorites = (username, movie) => {
       setUsers((prevUsers) => {
         const user = prevUsers[username] || {}; // Check if the user exists in prevUsers, or initialize an empty object
         const favorites = user.favorites || []; // Retrieve the favorites array for the user, or initialize an empty array
         const updatedUser = {
           ...user,
-          favorites: [...favorites, movieId], // Append the movieId to the favorites array
+          favorites: [...favorites, movie], // Append the movieId to the favorites array
         };
         const updatedUsers = {
           ...prevUsers,
@@ -70,7 +60,25 @@ export const UserProvider = ({children}) => {
         return updatedUsers;
       });
       };
-    const value={users,isLoggedIn,loggedUser,registerUser,loginUser,logoutUser,setFavorites};
+    const deleteFav = (movieId) => {
+        if (users[loggedUser]) { 
+          setUsers((prevUsers) => {
+            const user = prevUsers[loggedUser] || {}; // Check if the user exists in prevUsers, or initialize an empty object
+            const favorites = users[loggedUser].favorites.filter((movie) => movie.id !== movieId) || []; // Retrieve the favorites array for the user, or initialize an empty array
+            const updatedUser = {
+              ...user,
+              favorites: favorites, // Append the movieId to the favorites array
+            };
+            const updatedUsers = {
+              ...prevUsers,
+              [loggedUser]: updatedUser, // Update the user in the users object
+            };
+            localStorage.setItem('users', JSON.stringify(updatedUsers)); // Update localStorage with the modified favorites
+            return updatedUsers;
+          });
+        }
+      };
+    const value={users,isLoggedIn,loggedUser,registerUser,loginUser,logoutUser,setFavorites,deleteFav};
     return (
         <UserContext.Provider value={value}>
             {children}
