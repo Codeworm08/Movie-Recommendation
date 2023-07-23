@@ -70,7 +70,23 @@ export const UserProvider = ({children}) => {
         return updatedUsers;
       });
       };
-    const value={users,isLoggedIn,loggedUser,registerUser,loginUser,logoutUser,setFavorites};
+    const deleteFav = (movieId) => {
+      setUsers((prevUsers)=>{
+        const user=prevUsers[loggedUser] || {};
+        const favorites=user.favorites.filter((movie) => movie.id !== movieId);
+        const updatedUser = {
+          ...user,
+          favorites:favorites,
+        };
+        const updatedUsers={
+          ...prevUsers,
+          [loggedUser]: updatedUser,
+        };
+        localStorage.setItem('users',JSON.stringify(updatedUsers));
+        return updatedUsers;
+      });
+    };
+    const value={users,isLoggedIn,loggedUser,registerUser,loginUser,logoutUser,setFavorites,deleteFav};
     return (
         <UserContext.Provider value={value}>
             {children}

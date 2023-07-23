@@ -13,6 +13,7 @@ function SignOut()
     
     return (
         <>
+            <br/><br/>
             <button onClick={(e)=>{handleSubmit(e)}}>Sign Out</button>
         </>
     );

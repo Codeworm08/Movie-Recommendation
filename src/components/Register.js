@@ -30,6 +30,7 @@ function Register()
     }
     return (
         <div className='Form'>
+            <br/><br/>
             <form className="boxGlow" onSubmit={(e)=>{handleSubmit(e)}}>
                 <label>Username:</label><br/>
                 <input type="text" value={name} required onChange={(e)=>{handleName(e)}}/><br/>
