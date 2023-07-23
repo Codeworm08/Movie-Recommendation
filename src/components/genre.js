@@ -29,15 +29,18 @@ const Genre = () =>{
         navigate(`/recommendation/${selectedIDs}`);        
     };
     return (
-        <>
+        <> 
+            <h1>Movie Cavern</h1>
             <form onSubmit={handleFormSubmit}>
                 {list.map((genre) => (
-                    <div key={genre.id}>
-                        <input type="checkbox" id={genre.id} name="genres" value={genre.id}/>
+                   
+                    <div className="genree" key={genre.id}>
+                        <input className="radio" type="checkbox" id={genre.id} name="genres" value={genre.id}/>
                         <label htmlFor={genre.id}>{genre.name}</label>
                     </div>
+                    
                 ))}
-                <button type="submit">Submit</button>
+                <button type="submit"><span>Submit</span></button>
             </form>
         </>
     )
