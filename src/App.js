@@ -7,7 +7,6 @@ import { Link, Route, Routes } from 'react-router-dom';
 import SignIn from './components/SignIn';
 import Register from './components/Register';
 import { useContext } from 'react';
-import Favorites from './components/favorites';
 import SignOut from './components/SignOut';
 function App() {
   const {isLoggedIn,loggedUser}=useContext(UserContext);
@@ -34,7 +33,6 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/signout" element={<SignOut/>}/>
         <Route path="/choose" element={<Genre/>}/>
-        <Route path="/favorites" element={<Favorites/>}/>
         <Route path="movie/:id" element={<Movie />}/>
         <Route path="/recommendation/:genre" element={<Recommend />}/>
         </Routes>

@@ -2,9 +2,9 @@ import '../App.css';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
-const SignIn = () => {
-
-    const {users, loginUser}=useContext(UserContext);
+function SignIn()
+{
+    const {loginUser,isLoggedIn}=useContext(UserContext);
     const [name,setName]=useState('');
     const [password,setPassword]=useState('');
     const navigate=useNavigate();
@@ -16,14 +16,12 @@ const SignIn = () => {
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
-        const user = users[name];
-        if(user && user.password===password){
-            loginUser(user);
+        const f=loginUser(name,password);
+        console.log(isLoggedIn);
+        if(name!=='' && f){
+            console.log(name)
             navigate("/");
-        }else{
-            alert("Invalid username or password");
         }
-        
     }
     return (
         <div className="Form">

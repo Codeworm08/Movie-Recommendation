@@ -8,7 +8,7 @@ const Movie = () => {
     const {loggedUser,setFavorites} = useContext(UserContext);
     const navigate = useNavigate()
     const addToFavorites = (movie) => {
-        setFavorites(loggedUser,movie);
+        setFavorites(loggedUser,movie.id);
         alert(`${movie.original_title} has been added to your favorites!`);
     }
     const getData = () => {
@@ -36,7 +36,7 @@ const Movie = () => {
         {movie && movie.homepage && <a href={movie.homepage} target="_blank" rel="noreferrer">Homepage</a>}
         {movie && movie.imdb_id && <a href={"https://www.imdb.com/title/"+movie.imdb_id} target="_blank" rel="noreferrer">IMDB</a>}
         {/* Add to favorites button */}
-        {loggedUser?(<button onClick={() => addToFavorites(movie)}>Add to Favorites</button>): ""}
+        {loggedUser?(<button onClick={addToFavorites({movie})}>Add to Favorites</button>): ""}
         </>
     );
 
