@@ -2,10 +2,9 @@ import React ,{ useEffect, useState } from "react"
 import {useParams,Link, } from 'react-router-dom';
 const Recommend = () =>{
     const [ recs, setRecs ] = useState([]);
-    
+    const params = useParams();
     
     useEffect(() => {
-        let params = useParams();
         const options = {
             method: 'GET',
             headers: {
@@ -21,7 +20,7 @@ const Recommend = () =>{
             setRecs(response.results);
           })
           .catch(err => console.error(err));
-    },[])
+    },[params.genre]);
     return (
         <>
             {recs.map((movie) => (
