@@ -4,45 +4,51 @@ import Recommend from './components/recommend';
 import UserContext from './UserContext';
 import Genre from './components/genre';
 import Movie from './components/movie'
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes,useNavigate} from 'react-router-dom';
 import SignIn from './components/SignIn';
 import Register from './components/Register';
 import { useContext } from 'react';
-import SignOut from './components/SignOut';
 import Favorites from './components/favorites';
+
 function App() {
-  const {isLoggedIn,loggedUser}=useContext(UserContext);
+  const {isLoggedIn,loggedUser,logoutUser}=useContext(UserContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    logoutUser(loggedUser);
+    navigate("/");
+}
   return (
     <>
-      <div className='App'>
+      
       {isLoggedIn? (
         <>
           <ul>
           <li><Link to="/">Trending</Link></li>
-          <li><Link to="/choose">Recommend</Link></li>
+          <li><Link to="/choose">Recommendation</Link></li>
           <li><Link to="/favorites">Favorites</Link></li>
-          <li><Link to="/signout">Sign Out</Link></li>
-          </ul>          
+          <li className="log"><Link to="/" onClick={event => handleSubmit(event)}>Sign Out</Link></li>
+          </ul>
         </>
       ):(
         <>
-          <ul>
+         <ul>
           <li><Link to="/">Trending</Link></li>
           <li><Link to="/choose">Recommend</Link></li>
-          <li className="log"><Link to="/signin">Log In</Link></li>
-          <li><Link to="/register">Register</Link></li>
-          </ul>          
+          <li className="log"><Link to="/signin">Sign In</Link></li>
+          <li className="log"><Link to="/register">Register</Link></li>
+          </ul>
         </>
       )}
-      </div>      
+        
+      
       <div className="App">    
         <Routes>
         <Route path="/" element={<TrendingPage/>}/>
-        <Route path="/choose" element={<Genre/>}/>
         <Route path="/signin" element={<SignIn/>}/>
-        <Route path="/favorites" element={<Favorites/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/signout" element={<SignOut/>}/>
+        <Route path="/choose" element={<Genre/>}/>
+        <Route path="/favorites" element={<Favorites/>}/>
         <Route path="movie/:id" element={<Movie />}/>
         <Route path="/recommendation/:genre" element={<Recommend />}/>
         </Routes>
@@ -50,5 +56,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;

@@ -22,13 +22,9 @@ const TrendingPage = () => {
             });
     }, []);
 
-    return ( <
-        div className = "trending-page" >
-        <
-        h1 > Trending Movies < /h1> <
-        MovieList movies = { trendingMovies }
-        /> <
-        /div>
+    return ( <div className = "trending-page" >
+        <h1 > Trending Movies </h1> <
+        MovieList movies = { trendingMovies }/> </div>
     );
 };
 

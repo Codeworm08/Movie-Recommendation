@@ -29,18 +29,28 @@ function Register()
         
     }
     return (
+        
         <div className='Form'>
-            <br/><br/>
+            <div class="text">
+            Register Here
+            </div>
             <form className="boxGlow" onSubmit={(e)=>{handleSubmit(e)}}>
-                <label>Username:</label><br/>
-                <input type="text" value={name} required onChange={(e)=>{handleName(e)}}/><br/>
-                <label>Password:</label><br/>
-                <input type="password" value={password} minLength={6} required onChange={(e)=>{handlePassword(e)}}/><br/>
-                <label>Confirm Password:</label><br/>
-                <input type="password" minLength={6} value={confPassword} required onChange={(e)=>{handleConfPass(e)}} /><br/>
-                <input type="submit" value="Submit" />
+                <div class="inputbox">
+                <input type="text" value={name} required onChange={(e)=>{handleName(e)}}/>
+                <span>Username</span>
+                </div>
+                <div class="inputbox">
+                <input type="password" value={password} minLength={6} required onChange={(e)=>{handlePassword(e)}}/>
+                <span>Password</span>
+                </div>
+                <div class="inputbox">
+                <input type="password" minLength={6} value={confPassword} required onChange={(e)=>{handleConfPass(e)}} />
+                <span>Confirm Password</span>
+                </div>
+                <button type="submit" value="Submit" ><span>Submit</span></button>
             </form>
         </div>
+        
     );
 }
 export default Register;

@@ -8,20 +8,22 @@ const Favorites = () => {
     };
     return (
         <div>
-            <h2>Favorites</h2>
+            <h1>Favourites</h1>
             {users[loggedUser].favorites.length >0? (
-                <ul>
+                <div>
+                
                     {users[loggedUser].favorites.map((movie) => (
-                        <li>
-                        <img className="movie__poster" src={`https://image.tmdb.org/t/p/original${movie ? movie.poster_path : ""}`} alt="Movie Poster"/>
-                        <h3>{movie.original_title}</h3>
-                        <p>{movie.overview}</p>
-                        <button onClick={() => handleDeleteFromFavorites(movie)}>Remove from Favorites</button>
-                        </li>
+                        <div>
+                        <img className="movie__poster" src={`https://image.tmdb.org/t/p/original${movie ? movie.backdrop_path : ""}`} alt="Movie Poster"/>
+                        <h2>{movie.original_title}</h2>
+                        <div className="data" ><b>Synopsis:</b>{movie?" "+movie.overview : ""}</div><br></br><br></br>
+                        <button onClick={() => handleDeleteFromFavorites(movie)}><span>Remove from Favorites</span></button>
+                        </div>
                     ))}
-                </ul>
+                
+            </div>
             ):(
-                <p>No favorites yet!</p>
+                <div className='fav'>No favourites yet!</div>
             )}
         </div>
     );

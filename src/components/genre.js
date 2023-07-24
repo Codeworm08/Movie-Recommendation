@@ -39,7 +39,7 @@ const Genre = () =>{
                         <label htmlFor={genre.id}>{genre.name}</label>
                     </div>
                     
-                ))}
+                ))}<br></br>
                 <button type="submit"><span>Submit</span></button>
             </form>
         </>

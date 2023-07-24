@@ -2,9 +2,9 @@ import '../App.css';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
-function SignIn()
-{
-    const {loginUser,isLoggedIn}=useContext(UserContext);
+const SignIn = () => {
+
+    const {users, loginUser}=useContext(UserContext);
     const [name,setName]=useState('');
     const [password,setPassword]=useState('');
     const navigate=useNavigate();
@@ -16,22 +16,32 @@ function SignIn()
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
-        const f=loginUser(name,password);
-        console.log(isLoggedIn);
-        if(name!=='' && f){
-            console.log(name)
+        const user = users[name];
+        if(user && user.password===password){
+            loginUser(name,password);
             navigate("/");
+        }else{
+            alert("Invalid username or password");
         }
+        
     }
     return (
         <div className="Form">
-            <br/><br/>
+             <div class="text">
+            Sign In
+            </div>
             <form  className="boxGlow" onSubmit={(e)=>{handleSubmit(e)}}>
-                <label>Username:</label><br/>
-                <input type="text" value={name} required onChange={(e)=>{handleName(e)}}/><br/>
-                <label>Password:</label><br/>
-                <input type="password" value={password} required onChange={(e)=>{handlePassword(e)}}/><br/>
-                <input type="submit" value="Submit" />
+            <div class="inputbox">
+            <input type="text" value={name} required onChange={(e)=>{handleName(e)}}/>
+                <span>Username</span>
+                </div>
+                <div class="inputbox">
+                <input type="password" value={password} required onChange={(e)=>{handlePassword(e)}}/>
+                <span>Password</span>
+                </div>        
+                
+                
+                <button type="submit" value="Submit" ><span>Submit</span></button>
             </form>
         </div>
     );
