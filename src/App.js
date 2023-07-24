@@ -11,7 +11,7 @@ function App() {
         <ul>
         <li><Link to="/">Trending</Link></li>
         <li><Link to="/choose">Recommend</Link></li>
-        <li className="log"><Link to="/">Log In</Link></li>
+        
         </ul>
       
       <div className="App">    

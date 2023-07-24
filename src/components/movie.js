@@ -13,7 +13,7 @@ const Movie = () => {
     };
         getData();
 
-    }, [])
+    }, [id])
     return (
         <>
         
