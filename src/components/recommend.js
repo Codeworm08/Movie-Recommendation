@@ -3,8 +3,9 @@ import {useParams,Link, } from 'react-router-dom';
 const Recommend = () =>{
     const [ recs, setRecs ] = useState([]);
     
-    let params = useParams();
+    
     useEffect(() => {
+        let params = useParams();
         const options = {
             method: 'GET',
             headers: {

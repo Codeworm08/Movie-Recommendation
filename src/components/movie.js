@@ -4,13 +4,14 @@ const Movie = () => {
     const [movie, setMovie] = useState()
     const {id} = useParams()
     const navigate = useNavigate()
-    const getData = () => {
+    
+    useEffect(()=>{
+        const getData = () => {
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`)
         .then(res => res.json())
         .then(data => setMovie(data))        
-    }
-    useEffect(()=>{
-        getData()
+    };
+        getData();
 
     }, [])
     return (
